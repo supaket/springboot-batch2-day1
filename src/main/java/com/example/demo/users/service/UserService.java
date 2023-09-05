@@ -33,11 +33,21 @@ public class UserService {
         return user;
     }
 
+    public void updateUserById(int id, User user){
+        userStore.getUsers().forEach(u-> {
+            if(u.getId()==id) {
+                u.setName(user.getName());
+            }
+        });
+    }
+
     public void createUser(User user) {
         userStore.getUsers().add(user);
     }
 
-    public void deleteUser(String name) {
-        userStore.getUsers().remove(name);
+    public void deleteUser(int id) {
+        User user = new User();
+        user.setId(id);
+        userStore.getUsers().remove(user);
     }
 }

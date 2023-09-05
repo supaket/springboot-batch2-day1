@@ -34,10 +34,18 @@ public class UserController {
         return userService.getUsers();
     }
 
-    //Delete -> remove user with specific name
-    @DeleteMapping("/users/{name}")
-    public  List<User> deleteUser(@PathVariable String name){
-        userService.deleteUser(name);
+
+    @PutMapping("/users/{id}")
+    public User updateUser(@PathVariable("id") int id,
+                           @RequestBody User user){
+        userService.updateUserById(id, user);
+        return userService.getUsersById(id);
+    }
+
+    //Delete -> remove user with specific id
+    @DeleteMapping("/users/{id}")
+    public  List<User> deleteUser(@PathVariable int id){
+        userService.deleteUser(id);
         return userService.getUsers();
     }
 }

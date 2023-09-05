@@ -9,18 +9,17 @@ POST http://localhost:8080/users
 Content-Type: application/json
 
 {
-  "id": 2,
-  "name": "user2"
+  "id": 4,
+  "name": "user4"
 }
 
 ### 4. Update a user with specific Id
-PUT http://localhost:8080/users/1
+PUT http://localhost:8080/users/2
 Content-Type: application/json
 
 {
-  "id": 1,
-  "name": "new user1"
+  "name": "new user2"
 }
 
 ### 5. Delete user specific Id
-DELETE http://localhost:8080/users/1
+DELETE http://localhost:8080/users/2
