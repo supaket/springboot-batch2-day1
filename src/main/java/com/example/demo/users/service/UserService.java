@@ -35,7 +35,7 @@ public class UserService {
 
     public User getUsersById(int id) {
 
-        Optional<UserEntity> userEntityOptional = userRepo.findById(id);
+        Optional<UserEntity> userEntityOptional =  userRepo.findById(id);
         if(userEntityOptional.isPresent()){
             UserEntity userEntity = userEntityOptional.get();
             User user = new User();
@@ -43,6 +43,7 @@ public class UserService {
             user.setName(userEntity.getName());
             return user;
         }
+
 
         //TODO Handle exception
         return new User();
@@ -59,6 +60,8 @@ public class UserService {
         UserEntity entity = new UserEntity();
         entity.setName(user.getName());
         userRepo.save(entity);
+        // generate next sequence id <-
+        //insert into user value('name',id)
     }
 
     public void deleteUser(int id) {
