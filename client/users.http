@@ -1,0 +1,11 @@
+### GET Users
+GET http://localhost:8080/users
+
+### Send POST request with user
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "user1"
+}

@@ -25,9 +25,8 @@ public class UserController {
 
         System.out.println(user.getName()); //{"name": "user name3"}
         System.out.println(user.getId());
-        //userService.createUser(user);
+        userService.createUser(user);
         return userService.getUsers();
-        //System.out.println(user.getName());
     }
 
     //Delete -> remove user with specific name

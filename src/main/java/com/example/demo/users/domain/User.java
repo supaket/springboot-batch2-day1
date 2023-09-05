@@ -9,9 +9,7 @@ public class User {
         this.name = name;
     }
 
-    private String name;
-
-    public int getId() {
+     public int getId() {
         return id;
     }
 
@@ -20,4 +18,6 @@ public class User {
     }
 
     private int id;
+    private String name;
+
 }

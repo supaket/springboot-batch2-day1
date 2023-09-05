@@ -1,6 +1,9 @@
 package com.example.demo.users.service;
 
+import com.example.demo.UserStore;
 import com.example.demo.users.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -8,16 +11,19 @@ import java.util.List;
 
 @Service
 public class UserService {
-    List users = new ArrayList<String>();
+
+    @Autowired
+    UserStore userStore;
+
     public List<String> getUsers() {
-        return users;
+        return userStore.getUsers();
     }
 
     public void createUser(User user) {
-        users.add(user.getName());
+        userStore.getUsers().add(user.getName());
     }
 
     public void deleteUser(String name) {
-        users.remove(name);
+        userStore.getUsers().remove(name);
     }
 }
