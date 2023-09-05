@@ -2,52 +2,66 @@ package com.example.demo.users.service;
 
 import com.example.demo.UserStore;
 import com.example.demo.users.domain.User;
+import com.example.demo.users.entity.UserEntity;
+import com.example.demo.users.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
 
-    @Autowired
-    UserStore userStore;
+    UserRepository userRepo;
+
+    public UserService(UserRepository userRepo) {
+        this.userRepo =userRepo;
+    }
 
     public List<User> getUsers() {
-        return userStore.getUsers();
+        List<UserEntity> userEntities = userRepo.findAll();
+        List users = new ArrayList<User>();
+        userEntities.forEach(e->{
+            User u = new User();
+            u.setId(e.getId());
+            u.setName(e.getName());
+            users.add(u);
+        });
+        return users;
     }
+
 
     public User getUsersById(int id) {
 
-        final User user = new User();
+        Optional<UserEntity> userEntityOptional = userRepo.findById(id);
+        if(userEntityOptional.isPresent()){
+            UserEntity userEntity = userEntityOptional.get();
+            User user = new User();
+            user.setId(userEntity.getId());
+            user.setName(userEntity.getName());
+            return user;
+        }
 
-        userStore.getUsers().forEach(u-> {
-            if(u.getId()==id) {
-                user.setId(u.getId());
-                user.setName(u.getName());
-            }
-        });
-
-        return user;
+        //TODO Handle exception
+        return new User();
     }
 
     public void updateUserById(int id, User user){
-        userStore.getUsers().forEach(u-> {
-            if(u.getId()==id) {
-                u.setName(user.getName());
-            }
-        });
+        UserEntity entity = new UserEntity();
+        entity.setName(user.getName());
+        entity.setId(id);
+        userRepo.save(entity);
     }
 
     public void createUser(User user) {
-        userStore.getUsers().add(user);
+        UserEntity entity = new UserEntity();
+        entity.setName(user.getName());
+        userRepo.save(entity);
     }
 
     public void deleteUser(int id) {
-        User user = new User();
-        user.setId(id);
-        userStore.getUsers().remove(user);
+        userRepo.deleteById(id);
     }
 }
