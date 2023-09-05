@@ -1,11 +1,26 @@
-### GET Users
+### (done) 1. GET Users
 GET http://localhost:8080/users
 
-### Send POST request with user
+### 2. GET Users by Id
+GET http://localhost:8080/users/2
+
+### 3. Create a new user
 POST http://localhost:8080/users
 Content-Type: application/json
 
 {
-  "id": 1,
-  "name": "user1"
+  "id": 2,
+  "name": "user2"
 }
+
+### 4. Update a user with specific Id
+PUT http://localhost:8080/users/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "new user1"
+}
+
+### 5. Delete user specific Id
+DELETE http://localhost:8080/users/1

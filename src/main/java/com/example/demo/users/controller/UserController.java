@@ -15,13 +15,18 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public List<String> getUser() {
+    public List<User> getUser() {
         return userService.getUsers();
+    }
+
+    @GetMapping("/users/{id}")
+    public User getUserById(@PathVariable int id){
+        return userService.getUsersById(id);
     }
 
     //Post -> new user
     @PostMapping("/users")
-    public  List<String> postUser(@RequestBody User user){
+    public  List<User> postUser(@RequestBody User user){
 
         System.out.println(user.getName()); //{"name": "user name3"}
         System.out.println(user.getId());
@@ -31,7 +36,7 @@ public class UserController {
 
     //Delete -> remove user with specific name
     @DeleteMapping("/users/{name}")
-    public  List<String> deleteUser(@PathVariable String name){
+    public  List<User> deleteUser(@PathVariable String name){
         userService.deleteUser(name);
         return userService.getUsers();
     }

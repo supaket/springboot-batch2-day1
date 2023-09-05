@@ -15,12 +15,26 @@ public class UserService {
     @Autowired
     UserStore userStore;
 
-    public List<String> getUsers() {
+    public List<User> getUsers() {
         return userStore.getUsers();
     }
 
+    public User getUsersById(int id) {
+
+        final User user = new User();
+
+        userStore.getUsers().forEach(u-> {
+            if(u.getId()==id) {
+                user.setId(u.getId());
+                user.setName(u.getName());
+            }
+        });
+
+        return user;
+    }
+
     public void createUser(User user) {
-        userStore.getUsers().add(user.getName());
+        userStore.getUsers().add(user);
     }
 
     public void deleteUser(String name) {
