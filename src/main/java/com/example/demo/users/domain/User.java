@@ -22,6 +22,26 @@ public class User {
     private int id;
     private String name;
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    private String title;
+
+    private boolean completed;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

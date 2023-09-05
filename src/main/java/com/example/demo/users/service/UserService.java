@@ -3,6 +3,7 @@ package com.example.demo.users.service;
 import com.example.demo.UserStore;
 import com.example.demo.users.domain.User;
 import com.example.demo.users.entity.UserEntity;
+import com.example.demo.users.exception.UserNotFoundException;
 import com.example.demo.users.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,9 +45,7 @@ public class UserService {
             return user;
         }
 
-
-        //TODO Handle exception
-        return new User();
+      throw new UserNotFoundException(id);
     }
 
     public void updateUserById(int id, User user){

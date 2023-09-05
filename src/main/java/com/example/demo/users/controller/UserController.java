@@ -1,17 +1,25 @@
 package com.example.demo.users.controller;
 
 import com.example.demo.users.domain.User;
+import com.example.demo.users.gateway.PostGateway;
+import com.example.demo.users.gateway.PostResponse;
 import com.example.demo.users.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
 
     UserService userService;
-    public UserController(UserService userService) {
+    PostGateway postGateway;
+
+    public UserController(UserService userService,
+                          PostGateway postGateway) {
         this.userService = userService;
+        this.postGateway = postGateway;
     }
 
     @GetMapping("/users")
@@ -21,7 +29,13 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public User getUserById(@PathVariable int id){
-        return userService.getUsersById(id);
+        User user = userService.getUsersById(id);
+        Optional<PostResponse> respOpt = postGateway.getTodosById(id);
+        if(respOpt.isPresent()) {
+            user.setTitle(respOpt.get().getTitle());
+            user.setCompleted(respOpt.get().getCompleted());
+        }
+        return user;
     }
 
     //Post -> new user
