@@ -35,6 +35,22 @@ public class FizzBuzzParamTest {
 
 
     @ParameterizedTest
+    @ValueSource(ints = {1,2,4,6,7,8,10})
+    public void shouldSayInputIfNotDivideBy3Or5(int input){
+        //AAA
+
+        //Arrange
+        //int input = 1; // get it from input parameters
+
+        //Act
+        String result = fizzBuzz.say(input);
+
+        //Assert
+        assertEquals( String.valueOf(input), result);
+
+    }
+
+    @ParameterizedTest
     @CsvSource({
             "1, 1",
             "2, 2",
