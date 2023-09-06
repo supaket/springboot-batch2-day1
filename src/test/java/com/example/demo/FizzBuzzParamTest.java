@@ -35,7 +35,7 @@ public class FizzBuzzParamTest {
 
 
     @ParameterizedTest
-    @ValueSource(ints = {1,2,4,6,7,8,10})
+    @ValueSource(ints = {1,2,4,7,8})
     public void shouldSayInputIfNotDivideBy3Or5(int input){
         //AAA
 
