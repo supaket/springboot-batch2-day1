@@ -17,8 +17,7 @@ public class PostGateway {
     }
 
     public Optional<PostResponse> getTodosById(int id) {
-        String url = String.format("%s/%d", "", id);
-        System.out.println(url);
+        String url = String.format("%s/%d", postApiUrl, id);
         return Optional.ofNullable(restTemplate.getForObject(url , PostResponse.class));
     }
 }

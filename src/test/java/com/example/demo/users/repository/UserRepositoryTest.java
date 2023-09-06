@@ -16,7 +16,6 @@ class UserRepositoryTest {
     @Autowired
     UserRepository userRepository;
 
-
     @Test
     public void shouldBeAbleToFindUserByName(){
         //Arrange
@@ -38,6 +37,25 @@ class UserRepositoryTest {
 
     @Test
     public void shouldBeAbleToFindById(){
-        assertFalse(true);
+        //15:50
+
+        //Arrange
+        //clean data
+        userRepository.deleteAll();
+        //save user
+
+        //save user
+        UserEntity user = new UserEntity();
+        user.setName("fake user");
+        userRepository.save(user);
+
+
+        //Act
+        //call findByName
+        Optional<UserEntity> userResult = userRepository.findById(1);
+
+        //Assert
+        //Check the result is equal with saved user
+        assertEquals(user.getName(), userResult.get().getName());
     }
 }
