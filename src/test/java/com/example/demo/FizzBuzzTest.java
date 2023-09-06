@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -99,7 +100,17 @@ public class FizzBuzzTest {
             //Assert
             assertEquals("FizzBuzz", result);
         });
+    }
 
+    @Test
+    public void shouldThrowExceptionIfInputIs0(){
+        int input = 0;
 
+        IllegalStateException thrown = Assertions.assertThrows(IllegalStateException.class, () -> {
+            //Code under test
+            fizzBuzz.say(input);
+        });
+
+        assertEquals("Zero is not allowed",thrown.getMessage());
     }
 }
