@@ -1,8 +1,13 @@
 package com.example.demo.users.gateway;
 
+import com.example.demo.lottery.service.LotteryService;
+import com.example.demo.users.repository.UserRepository;
+import com.example.demo.users.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 
 import java.util.Optional;
