@@ -1,7 +1,6 @@
 package com.example.demo.users.gateway;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,9 +16,8 @@ public class PostGateway {
         this.postApiUrl = postApiUrl;
     }
 
-
     public Optional<PostResponse> getTodosById(int id) {
-        String url = String.format("%s/%d", postApiUrl, id);
+        String url = String.format("%s/%d", "", id);
         System.out.println(url);
         return Optional.ofNullable(restTemplate.getForObject(url , PostResponse.class));
     }

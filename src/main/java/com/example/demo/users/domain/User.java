@@ -22,6 +22,10 @@ public class User {
     private int id;
     private String name;
 
+    private String title;
+
+    private boolean completed;
+
     public String getTitle() {
         return title;
     }
@@ -37,10 +41,6 @@ public class User {
     public void setCompleted(boolean completed) {
         this.completed = completed;
     }
-
-    private String title;
-
-    private boolean completed;
 
     @Override
     public boolean equals(Object o) {
