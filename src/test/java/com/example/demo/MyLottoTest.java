@@ -18,6 +18,20 @@ class MyLottoTest {
     @Mock
     Random random;
 
+
+    @Test
+    public void shouldCallRandomNextIntFunc1Times() {
+        // Mock or Spy?
+        //Arrange
+        Random spy007 = spy(new Random());
+
+        //Act
+        MyLotto myLotto = new MyLotto(spy007);
+        myLotto.randomLotto();
+
+        verify(spy007, times(1)).nextInt(100);
+    }
+
     @Test
     public void shouldCallRandomNextIntWithParam100(){
 
